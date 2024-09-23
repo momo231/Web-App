@@ -1,0 +1,48 @@
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #222831;
+    color: white;
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+  }
+
+  h1{
+    margin-bottom: 0px;
+  }
+  
+  #upload-button {
+    background-color: #17191e;
+    color: #eeee;
+    position: relative;
+    border: none;
+    font-size: 5rem;
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    user-select: none;
+  }
+
+  #upload-button p {
+    margin: 0px 0px 8px 0px;
+    font-size: 1rem;
+    font-weight:bold;
+  }
+  
+  #upload-button:hover {
+    background-color: #344955;
+  }
+  
+  #upload-button:active {
+    background-color: #415763;
+  }

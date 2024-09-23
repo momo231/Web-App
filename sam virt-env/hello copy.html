@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Segmentation</title>
+    <link rel="stylesheet" href="style.css">
+        <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>IMAGE SEGMENTATION TOOL</h1>
+    <h2></h2>
+    <form id="upload-form" enctype="multipart/form-data">
+        <input type="file" id="file-input" name="image" accept="image/*" style="display:none;">
+        <button type="button" id="upload-button"><i class="bx bx-upload"></i><br><p>UPLOAD IMAGE</p></button>
+    </form>
+    <div id="result">
+        <h2><u>Segmented Image</u></h2>
+        <img id="segmented-image" src="" alt="Segmented Image" style="display:none;">
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#upload-button').on('click', function() {
+                $('#file-input').click();
+            });
+
+            $('#file-input').on('change', function() {
+                $('#upload-form').submit();
+            });
+
+            $('#upload-form').on('submit', function(event) {
+                event.preventDefault();
+                var formData = new FormData(this);
+
+                $.ajax({
+                    url: 'http://127.0.0.1:5000/upload',  // Ensure the port is 5000
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    xhrFields: {
+                        responseType: 'blob'  // Expect a blob response
+                    },
+                    success: function(blob) {
+                        console.log("Image received from server");
+                        var url = URL.createObjectURL(blob);
+                        $('#segmented-image').attr('src', url).show();
+                    },
+                    error: function(response) {
+                        var errorMessage = response.responseJSON ? response.responseJSON.error : 'An error occurred';
+                        console.error("Error: " + errorMessage);
+                        alert(errorMessage);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
