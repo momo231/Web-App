@@ -1,0 +1,6 @@
+opencv-python
+supervision
+torch
+torchvision
+segment_anything
+Collecting torch==2.1.0+cu118 (from torchvision==0.16.0+cu118)
